@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766368291069",
+    "project_id": "code-everyday-7b9d8",
+    "storage_bucket": "code-everyday-7b9d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766368291069:android:b417b64bd22add03d30694",
+        "android_client_info": {
+          "package_name": "com.jangle.parth.code_everyday"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqpkF97unTEKCt5YcmHz0wXAJR5vlFrUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
