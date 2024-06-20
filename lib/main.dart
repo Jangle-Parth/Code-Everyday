@@ -13,14 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Code Everyday',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Welcome to, Code Everyday'),
-        ),
-        body: const HomeScreen(),
-      ),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
