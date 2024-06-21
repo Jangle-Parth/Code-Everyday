@@ -18,7 +18,7 @@ class SignUpScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                ' ClipJoy',
+                ' Code EveryDay',
                 style: TextStyle(
                     fontSize: 35,
                     color: Colors.redAccent,
