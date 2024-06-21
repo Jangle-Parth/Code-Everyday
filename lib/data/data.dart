@@ -1,4 +1,4 @@
-import 'package:code_everyday/messagemodel.dart';
+import 'package:code_everyday/data/messagemodel.dart';
 
 final List<MessageModel> messages = [
   MessageModel(

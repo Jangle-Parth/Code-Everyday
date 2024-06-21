@@ -1,5 +1,5 @@
-import 'package:code_everyday/data.dart';
-import 'package:code_everyday/messagemodel.dart';
+import 'package:code_everyday/data/data.dart';
+import 'package:code_everyday/data/messagemodel.dart';
 import 'package:flutter/material.dart';
 
 class MessageForm extends StatefulWidget {

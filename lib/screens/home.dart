@@ -1,6 +1,6 @@
-import 'package:code_everyday/data.dart';
-import 'package:code_everyday/message.dart';
-import 'package:code_everyday/messageform.dart';
+import 'package:code_everyday/data/data.dart';
+import 'package:code_everyday/widgets/message.dart';
+import 'package:code_everyday/widgets/messageform.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
