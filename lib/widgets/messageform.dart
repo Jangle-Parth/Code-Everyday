@@ -1,5 +1,7 @@
-import 'package:code_everyday/data/data.dart';
+import 'dart:math';
+
 import 'package:code_everyday/data/messagemodel.dart';
+import 'package:code_everyday/firebase/database.dart';
 import 'package:flutter/material.dart';
 
 class MessageForm extends StatefulWidget {
@@ -27,11 +29,13 @@ class _MessageFormState extends State<MessageForm> {
                 ],
               ));
     } else {
-      messages.add(MessageModel(
-        day: "xyz",
-        message: _messagecontroller.text,
-        name: "Jangle Parth",
-      ));
+      Map<String, dynamic> dayinfo = {
+        "name": "Jangle Parth",
+        "day": "${Random().nextInt(100)}",
+        "message": _messagecontroller.text
+      };
+
+      DatabaseMethods().addDay(dayinfo, "${Random().nextInt(100)}");
       Navigator.pop(context);
     }
   }
