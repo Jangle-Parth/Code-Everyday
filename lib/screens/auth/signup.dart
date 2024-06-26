@@ -1,3 +1,4 @@
+import 'package:code_everyday/firebase/database.dart';
 import 'package:code_everyday/screens/auth/login.dart';
 import 'package:code_everyday/screens/home.dart';
 import 'package:code_everyday/widgets/customtextinput.dart';
@@ -78,7 +79,9 @@ class SignUpScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
+                    DatabaseMethods().registerUser(_emailController.text,
+                        _passwordController.text, _usernameController.text);
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));

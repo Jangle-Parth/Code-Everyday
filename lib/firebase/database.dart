@@ -13,12 +13,25 @@ class DatabaseMethods {
     return await FirebaseFirestore.instance.collection("Days").snapshots();
   }
 
-  Future registerUser(String email, String password, String username) async {
+  Future registerUser(
+    String email,
+    String password,
+    String username,
+  ) async {
     try {
       if (username.isNotEmpty && email.isNotEmpty) {
-        UserCredential user = await FirebaseAuth.instance
+        UserCredential cred = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-            await FirebaseFirestore.instance.collection("users").doc(user.)
+        Map<String, dynamic> user = {
+          "name": username,
+          "email": email,
+          "uid": cred.user?.uid
+        };
+
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(cred.user?.uid)
+            .set(user);
       }
     } catch (e) {}
   }
