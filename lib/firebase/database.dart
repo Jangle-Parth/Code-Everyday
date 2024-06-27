@@ -13,6 +13,10 @@ class DatabaseMethods {
     return await FirebaseFirestore.instance.collection("Days").snapshots();
   }
 
+  Future<Stream<QuerySnapshot>> getUser() async {
+    return await FirebaseFirestore.instance.collection("users").snapshots();
+  }
+
   Future registerUser(
     String email,
     String password,
@@ -28,7 +32,7 @@ class DatabaseMethods {
           "uid": cred.user?.uid
         };
 
-        await FirebaseFirestore.instance
+        return await FirebaseFirestore.instance
             .collection("users")
             .doc(cred.user?.uid)
             .set(user);

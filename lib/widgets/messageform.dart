@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:code_everyday/data/messagemodel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_everyday/firebase/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MessageForm extends StatefulWidget {
@@ -12,7 +13,13 @@ class MessageForm extends StatefulWidget {
 }
 
 class _MessageFormState extends State<MessageForm> {
-  void _submitData() {
+  void _submitData() async {
+    DocumentSnapshot userDoc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .get();
+    print(FirebaseAuth.instance.currentUser?.uid);
+
     if (_messagecontroller.text.isEmpty) {
       showDialog(
           context: context,
@@ -30,7 +37,7 @@ class _MessageFormState extends State<MessageForm> {
               ));
     } else {
       Map<String, dynamic> dayinfo = {
-        "name": "Jangle Parth",
+        "name": userDoc['name'],
         "day": "${Random().nextInt(100)}",
         "message": _messagecontroller.text
       };
