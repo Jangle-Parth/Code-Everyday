@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_everyday/firebase/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,15 +16,17 @@ class _MessageFormState extends State<MessageForm> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get();
-    print(FirebaseAuth.instance.currentUser?.uid);
-
-    if (_messagecontroller.text.isEmpty) {
+    if (_messagecontroller.text.isEmpty || userDoc['uid'] == null) {
+      // ignore: use_build_context_synchronously
       showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-                title: const Text('Invalid Input'),
-                content:
-                    const Text("Please Make sure you have added your message"),
+                title: userDoc['uid'] == null
+                    ? const Text("Error Loggin in")
+                    : const Text('Invalid Input'),
+                content: userDoc['uid'] == null
+                    ? const Text("Pls Register again")
+                    : const Text('Pls Enter a Message'),
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -38,12 +38,12 @@ class _MessageFormState extends State<MessageForm> {
     } else {
       Map<String, dynamic> dayinfo = {
         "name": userDoc['name'],
-        "day": "${Random().nextInt(100)}",
+        "day": userDoc['days'],
         "message": _messagecontroller.text
       };
-
-      DatabaseMethods().addDay(dayinfo, "${Random().nextInt(100)}");
+      await DatabaseMethods().addDay(dayinfo);
       Navigator.pop(context);
+      await DatabaseMethods().updateDay();
     }
   }
 
