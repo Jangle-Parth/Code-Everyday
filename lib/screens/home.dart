@@ -63,16 +63,18 @@ class _HomeScreenState extends State<HomeScreen> {
         stream: DayStream,
         builder: (context, snapshot) {
           return Scaffold(
-              appBar: AppBar(
-                title: const Text('Welcome 👋'),
-                actions: [
-                  IconButton(
-                    onPressed: openForm,
-                    icon: const Icon(Icons.add),
-                    iconSize: 30,
-                  )
-                ],
-              ),
+              appBar: pageindex == 0
+                  ? AppBar(
+                      title: const Text('Welcome 👋'),
+                      actions: [
+                        IconButton(
+                          onPressed: openForm,
+                          icon: const Icon(Icons.add),
+                          iconSize: 30,
+                        )
+                      ],
+                    )
+                  : null,
               bottomNavigationBar: BottomNavigationBar(
                   type: BottomNavigationBarType.fixed,
                   currentIndex: pageindex,

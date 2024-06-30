@@ -38,6 +38,23 @@ class ProfileScreen extends StatelessWidget {
                       color: Colors.blue),
                 ),
                 const SizedBox(
+                  height: 10,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    "Flutter Developer | Machine Learning | Robotics | Devops",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const SizedBox(
                   height: 20,
                 ),
                 Container(

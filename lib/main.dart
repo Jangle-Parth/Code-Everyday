@@ -1,7 +1,6 @@
-import 'package:code_everyday/screens/auth/login.dart';
 import 'package:code_everyday/screens/auth/signup.dart';
 import 'package:code_everyday/screens/home.dart';
-import 'package:code_everyday/screens/profilescreen.dart';
+import 'package:code_everyday/screens/leaderboardscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,7 +36,7 @@ class AuthCheck extends StatelessWidget {
           if (user == null) {
             return SignUpScreen();
           } else {
-            return const ProfileScreen();
+            return const LeaderBoardScreen();
           }
         } else {
           // Show loading indicator while checking the auth state
