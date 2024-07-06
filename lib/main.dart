@@ -36,7 +36,7 @@ class AuthCheck extends StatelessWidget {
           if (user == null) {
             return SignUpScreen();
           } else {
-            return const LeaderBoardScreen();
+            return const HomeScreen();
           }
         } else {
           // Show loading indicator while checking the auth state

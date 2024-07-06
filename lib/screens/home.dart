@@ -3,10 +3,8 @@ import 'package:code_everyday/data/messagemodel.dart';
 import 'package:code_everyday/firebase/database.dart';
 import 'package:code_everyday/screens/leaderboardscreen.dart';
 import 'package:code_everyday/screens/profilescreen.dart';
-import 'package:code_everyday/screens/searchscreen.dart';
 import 'package:code_everyday/widgets/message.dart';
 import 'package:code_everyday/widgets/messageform.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,14 +12,6 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
-}
-
-Future getUserData() async {
-  DocumentSnapshot userDoc = await FirebaseFirestore.instance
-      .collection('users')
-      .doc(FirebaseAuth.instance.currentUser?.uid)
-      .get();
-  return userDoc;
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -42,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Stream? DayStream;
   int pageindex = 0;
   List screens = [
-    const SearchScreen(),
     const LeaderBoardScreen(),
     const ProfileScreen(),
   ];
@@ -90,8 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icon(Icons.home),
                       label: "Home",
                     ),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.search), label: "Search"),
                     BottomNavigationBarItem(
                         icon: Icon(Icons.leaderboard), label: "LeaderBoard"),
                     BottomNavigationBarItem(
