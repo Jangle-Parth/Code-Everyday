@@ -9,6 +9,7 @@ class SignUpScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _headlineController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,19 @@ class SignUpScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextInputFeild(
+                  controller: _headlineController,
+                  labelText: "Enter Headline ",
+                  isObscure: false,
+                  icon: Icons.info,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInputFeild(
                     controller: _emailController,
                     labelText: "Enter Your Email",
                     isObscure: false,
@@ -79,8 +93,11 @@ class SignUpScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: InkWell(
                   onTap: () {
-                    DatabaseMethods().registerUser(_emailController.text,
-                        _passwordController.text, _usernameController.text);
+                    DatabaseMethods().registerUser(
+                        _emailController.text,
+                        _passwordController.text,
+                        _usernameController.text,
+                        _headlineController.text);
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

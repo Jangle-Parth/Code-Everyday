@@ -39,7 +39,8 @@ class _MessageFormState extends State<MessageForm> {
       Map<String, dynamic> dayinfo = {
         "name": userDoc['name'],
         "day": userDoc['days'],
-        "message": _messagecontroller.text
+        "message": _messagecontroller.text,
+        "Date": FieldValue.serverTimestamp()
       };
       await DatabaseMethods().addDay(dayinfo);
       Navigator.pop(context);
