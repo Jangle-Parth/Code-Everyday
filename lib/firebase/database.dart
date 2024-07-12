@@ -1,29 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart';
 
 class DatabaseMethods {
   Future addDay(Map<String, dynamic> dayinfo) async {
-    var userData = await FirebaseFirestore.instance
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .get();
-    var dayData = await FirebaseFirestore.instance
-        .collection("Days")
-        .get()
-        .then((QuerySnapshot data) {
-      if (data.docs.isNotEmpty) {
-        DocumentSnapshot doc = data.docs.first;
-        SnackBar(
-          content: Text(doc["day"]),
-        );
-      } else {
-        const SnackBar(
-          content: Text("No Document Found"),
-        );
-      }
-    });
-
     return await FirebaseFirestore.instance.collection("Days").add(dayinfo);
   }
 
@@ -41,6 +22,8 @@ class DatabaseMethods {
   Future registerUser(
       String email, String password, String username, String headline) async {
     try {
+      DateTime now = DateTime.now();
+      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
       if (username.isNotEmpty && email.isNotEmpty) {
         UserCredential cred = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
@@ -51,7 +34,8 @@ class DatabaseMethods {
           "days": 0,
           "headline": headline,
           "rank": 0,
-          "streak": 0
+          "streak": 0,
+          "lastpostdate": formattedDate,
         };
 
         return await FirebaseFirestore.instance
